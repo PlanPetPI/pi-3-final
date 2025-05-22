@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuidados com o Seu Cachorro</title>
+    <style>
+        
+body.contraste {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+body.contraste .container {
+  background-color: #111 !important;
+  color: #fff !important;
+}
+
+body.contraste input,
+body.contraste select {
+  background-color: #333 !important;
+  color: #fff !important;
+  border: 1px solid #fff;
+}
+
+body.contraste label,
+body.contraste h1,
+body.contraste h2,
+body.contraste h3 {
+  color: #fff !important;
+}
+
+body.contraste button {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf6e3;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background-color: #fffbea;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #eee;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5c6b73;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        button {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #b0e0e6;
+            color: #333;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #add8e6;
+        }
+
+        .resultado {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e6f2f2;
+            border-radius: 10px;
+            border: 1px solid #d0e7e7;
+        }
+    </style>
+</head>
+<nav>
+    <button id="toggle-contrast" style="
+  position: fixed;
+  top: 10px;
+  right: 100px;
+  z-index: 999;
+  padding: 10px 10px;
+  font-size: 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+">
+  Contraste
+</button>
+
+</nav>
+<body>
+    <div class="container">
+        <h1>Cuidados com o seu Cachorro</h1>
+        <form id="dogForm">
+            <label for="porte">Porte do Cachorro:</label>
+            <select id="porte" required>
+                <option value="">Selecione</option>
+                <option value="pequeno">Pequeno</option>
+                <option value="medio">Médio</option>
+                <option value="grande">Grande</option>
+            </select>
+
+            <label for="idade">Idade do Cachorro (1-20 anos):</label>
+            <input type="number" id="idade" min="1" max="20" required>
+
+            <label for="atividadeTutor">Atividade Física do Tutor:</label>
+            <select id="atividadeTutor" required>
+                <option value="">Selecione</option>
+                <option value="frequente">Atividade Frequente</option>
+                <option value="esporadica">Atividade Esporádica</option>
+            </select>
+
+            <label for="local">Local das Atividades:</label>
+            <select id="local" required>
+                <option value="">Selecione</option>
+                <option value="casa">Casa</option>
+                <option value="apartamento">Apartamento</option>
+                <option value="parque">Parque</option>
+                <option value="rua">Rua</option>
+            </select>
+
+            <button type="submit">Calcular Recomendações</button>
+        </form>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        document.getElementById("dogForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const porte = document.getElementById("porte").value;
+            const idade = parseInt(document.getElementById("idade").value);
+            const atividadeTutor = document.getElementById("atividadeTutor").value;
+            const local = document.getElementById("local").value;
+
+            let horas = 0;
+
+            if (porte === "pequeno") {
+                horas = atividadeTutor === "frequente" ? 4 : 2;
+            } else if (porte === "medio") {
+                horas = atividadeTutor === "frequente" ? 6 : 3;
+            } else if (porte === "grande") {
+                horas = atividadeTutor === "frequente" ? 8 : 4;
+            }
+
+            if (idade >= 10) horas -= 1;
+            if (idade <= 2) horas += 1;
+
+            if (local === "parque" || local === "rua") horas += 1;
+            if (local === "apartamento") horas -= 1;
+
+            horas = Math.max(horas, 1);
+
+            const dicasSaude = `
+        <ul>
+          <li>Leve seu cachorro para check-ups regulares com o veterinário.</li>
+          <li>Mantenha a vacinação e vermifugação em dia.</li>
+          <li>Ofereça água fresca sempre disponível.</li>
+          <li>Estimule com brinquedos e interações.</li>
+        </ul>
+      `;
+
+            let racao = "";
+            if (idade <= 1) {
+                racao = "Ração Premium para filhotes, rica em proteínas e DHA.";
+            } else if (idade <= 7) {
+                racao = "Ração para adultos com nutrientes balanceados e ômega 3.";
+            } else {
+                racao = "Ração sênior com condroitina e glucosamina para articulações.";
+            }
+
+            document.getElementById("resultado").innerHTML = `
+        <h2>Recomendações:</h2>
+        <p><strong>Horas ideais de atividade por semana:</strong> ${horas} horas</p>
+        <h3>Dicas de Saúde:</h3>
+        ${dicasSaude}
+        <h3>Ração Ideal:</h3>
+        <p>${racao}</p>
+      `;
+        });
+        document.getElementById('toggle-contrast').addEventListener('click', () => {
+  document.body.classList.toggle('contraste');
+});
+
+    </script>
+</body>
+
+</html>

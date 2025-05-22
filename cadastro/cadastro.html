@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="src/style/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Cadastro</h2>
+        <form id="registerForm">
+            <label for="name"></label>
+            <input type="text" id="name" placeholder="Digite seu nome" required>
+
+            <label for="email"></label>
+            <input type="email" id="emailRegister" placeholder="Digite seu e-mail" required>
+
+            <label for="password"></label>
+            <input type="password" id="passwordRegister" placeholder="Confirme sua senha" required>
+
+            <button type="submit">Cadastrar</button>
+            <p>Já tem uma conta? <a href="./login.html">Faça login</a></p>
+            <a href="/index.html"> inicio </a>
+        </form>
+    </div>
+    <script>
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    fetch("cadastrar.php", {
+        method: "POST",
+        body: formData
+    }).then(res => res.text())
+      .then(msg => alert(msg))
+      .catch(err => console.error(err));
+});
+</script>
+
+</body>
+</html>

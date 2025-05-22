@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Questionário Pet Shop</title>
+  <style>
+
+ button.contraste {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #6e3cbc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+ }
+body.contraste {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+body.contraste .container {
+  background: #111 !important;
+  color: #fff;
+}
+
+body.contraste input,
+body.contraste select,
+body.contraste textarea {
+  background: #333;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+body.contraste label {
+  color: #fff;
+}
+
+body.contraste button {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      background:   #fcf2d8;
+;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #f9f7ed;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #6e3cbc;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .question p {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+    }
+    .options input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #6e3cbc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #5b329b;
+    }
+    #result {
+      margin-top: 20px;
+      background: #eef;
+      padding: 15px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Questionário Pet Shop</h1>
+    <form id="surveyForm">
+       <button id="toggle-contrast" style="position: justify; top: 5px; right: 5px; z-index: 5; padding: 5px; background: #000; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+  Alto Contraste
+</button>
+      <!-- 1 -->
+      <div class="question">
+        <p>1. Você tem algum animal de estimação?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="Sim" required> Sim</label>
+          <label><input type="radio" name="q1" value="Não, mas gostaria"> Não, mas gostaria</label>
+          <label><input type="radio" name="q1" value="Não, e não gostaria"> Não, e não gostaria</label>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="question">
+        <p>2. Como você costuma comprar produtos para o seu pet?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="Pelo telefone" required> Pelo telefone</label>
+          <label><input type="radio" name="q2" value="Pelo site"> Pelo site</label>
+          <label><input type="radio" name="q2" value="Pelo aplicativo"> Pelo aplicativo</label>
+          <label><input type="radio" name="q2" value="Presencial"> Presencial</label>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="question">
+        <p>3. Como você costuma procurar serviços para seu pet?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="Pelo telefone" required> Pelo telefone</label>
+          <label><input type="radio" name="q3" value="Pelo site"> Pelo site</label>
+          <label><input type="radio" name="q3" value="Pelo aplicativo"> Pelo aplicativo</label>
+          <label><input type="radio" name="q3" value="Presencial"> Presencial</label>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="question">
+        <p>4. Quantas vezes por mês você faz pedido de serviços para o seu pet?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="De 1 a 3 vezes" required> De 1 a 3 vezes</label>
+          <label><input type="radio" name="q4" value="De 4 a 6 vezes"> De 4 a 6 vezes</label>
+          <label><input type="radio" name="q4" value="De 7 a 10 vezes"> De 7 a 10 vezes</label>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="question">
+        <p>5. Quais dos serviços abaixo você utiliza para o seu pet?</p>
+        <div class="options">
+          <label><input type="checkbox" name="q5" value="Banho e tosa"> Banho e tosa</label>
+          <label><input type="checkbox" name="q5" value="Veterinário"> Veterinário</label>
+          <label><input type="checkbox" name="q5" value="Pet shop (compras de produtos)"> Pet shop (compras de produtos)</label>
+          <label>
+            <input type="checkbox" id="otherChk" name="q5" value="Outro"> Outro:
+            <input type="text" id="otherText" placeholder="Especifique" disabled>
+          </label>
+        </div>
+      </div>
+
+  <!-- 6 -->
+      <div class="question">
+        <p>6. com que frequência você leva o seu pet ao Veterinário</p>
+        <div class="options">
+          <label><input type="radio" name="q6" value="uma vez por ano" required> uma vez por ano</label>
+          <label><input type="radio" name="q6" value="so quando esta doente "> so quando esta doente </label>
+          <label><input type="radio" name="q6" value="nunca levei "> nunca levei </label>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="question">
+        <p>7. Qual tipo de pet você possui?</p>
+        <div class="options">
+          <label><input type="radio" name="q7" value="Cachorro" required> Cachorro</label>
+          <label><input type="radio" name="q7" value="Gato "> Gato </label>
+          <label><input type="radio" name="q7" value="Outro "> Outro </label>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="question">
+        <p>8. Quanto você costuma gastar por mês com seu pet?</p>
+        <div class="options">
+          <label><input type="radio" name="q8" value="Até R$50" required> Até R$50</label>
+          <label><input type="radio" name="q8" value="De R$50 a R$150"> De R$50 a R$150 </label>
+          <label><input type="radio" name="q8" value="Acima de R$300"> Acima de R$300 </label>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="question">
+        <p>9.  Você utiliza algum plano de saúde ou assinatura mensal para seu pet?</p>
+        <div class="options">
+          <label><input type="radio" name="q9" value="Sim" required> Sim</label>
+          <label><input type="radio" name="q9" value="Nao"> Não </label>
+          <label><input type="radio" name="q9" value="Tenho interesse "> Tenho interesse </label>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="question">
+        <p>10. Qual a principal motivação para você comprar em um pet shop?</p>
+        <div class="options">
+          <label><input type="radio" name="q10" value="Atendimento personalizado" required> Atendimento personalizado</label>
+          <label><input type="radio" name="q10" value="Variedade de marcas"> Variedade de marcas</label>
+          <label><input type="radio" name="q10" value="Preço"> Preço </label>
+        </div>
+      </div>
+      
+
+      <button type="submit">Enviar respostas</button>
+    </form>
+
+    <div id="result" hidden></div>
+  </div>
+
+  <script>
+document.getElementById('otherChk').addEventListener('change', function(){
+  document.getElementById('otherText').disabled = !this.checked;
+  if(!this.checked) document.getElementById('otherText').value = '';
+});
+
+document.getElementById('surveyForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = e.target;
+  const data = {};
+
+  ['q1','q2','q3','q4','q6','q7','q8','q9','q10'].forEach(name => {
+    data[name] = form.elements[name].value;
+  });
+
+  const checks = [...form.querySelectorAll('input[name="q5"]:checked')]
+    .map(ch => ch.value === 'Outro'
+      ? (document.getElementById('otherText').value || 'Outro')
+      : ch.value
+    );
+  data.q5 = checks;
+
+  fetch("salvar_respostas.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    alert(res.msg);
+    if (res.status === "ok") {
+      form.reset();
+      document.getElementById('otherText').disabled = true;
+    }
+  })
+  .catch(err => {
+    alert("Erro ao enviar respostas.");
+    console.error(err);
+  });
+});
+
+
+
+  document.getElementById('toggle-contrast').addEventListener('click', () => {
+    document.body.classList.toggle('contraste');
+  });
+
+
+</script>
+
+</body>
+</html>
